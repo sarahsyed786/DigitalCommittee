@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enroll Package</title>
+</head>
+<body>
+    <h1>Enroll Package</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"><a href="/express_interest">Enroll</a></button>
+    </form>
+</body>
+</html>

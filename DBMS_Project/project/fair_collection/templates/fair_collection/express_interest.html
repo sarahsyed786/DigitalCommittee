@@ -1,0 +1,12 @@
+<!-- enrollment/templates/enrollment/express_interest.html -->
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Express Interest in a Package</h2>
+    <form method="post" action="{% url 'express_interest' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Express Interest</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DigitalCommittee</title>
+    
+    <style>
+
+      *{
+        margin: 0;
+        padding: 0;
+        font-family:Arial;
+    }
+    .banner{
+        width: 100%;
+        height: 100vh;
+        background-image:linear-gradient(rgba(0, 0, 0, 0.400),rgba(0, 0, 0, 0.400)),url(https://kachafurniture.com/wp-content/uploads/2023/04/Chicago-Grey.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    .navbar{
+        width: 85%;
+        margin: auto;
+        padding: 35px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+         {% comment %} background-color: #009688;  {% endcomment %}
+    }
+    
+    
+    .navbar h3{
+        width: 120px;
+        cursor: pointer;
+        color: #f1f1f3;
+    
+    }
+    
+    .navbar ul li{
+        list-style: none;
+        display: inline-block;
+        margin: 0 20px;
+        position: relative;
+    }
+    
+    .navbar ul li a{
+        text-decoration: none;
+        color: #fff;
+        text-transform: uppercase;
+    }
+    
+    .navbar ul li::after{
+        content: '';
+        height: 3px;
+        width: 0;
+        background: #009688;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        transition: 0.5s;
+    }
+    .navbar ul li:hover::after{
+        width: 100%;
+    }
+    
+    .content{
+        width: 100%;
+        position: absolute;
+        top: 47%;
+        transform: translateY(-50%);
+        text-align: center;
+        color: #fff;
+    }
+    
+    .content h1{
+        font-size: 70px;
+        margin-top: 80px;
+    }
+    .content p{
+    
+        margin: 30px auto;
+        font-weight: 100;
+        line-height: 25px;
+        font-size: 18px;
+    }
+    
+    
+
+    </style>
+
+  </head>
+
+  <body>
+    
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong> Message: </strong> {{ message }}
+      <button type="button"   OnMouseClick="close" class="close" data-dismiss="alert" aria-lable="Close">  
+      <span aria-hidden="true"> &times; </span>
+    </div>
+  </button>
+    {% endfor %}
+  
+    
+    <div class="banner">
+      <div class="navbar">
+          <h3>***$ </br>DigitalCommittee</h3>
+          <ul>
+              <li><a href='/'>Home</a></li>
+              <li><a href='/features'>Features</a></li>
+              <li><a href='/about'>About Us</a></li>
+
+            {% if user.is_authenticated %}
+           
+      <li><a href='/signout'>Sign Out</a></li>
+      <li><a href='/user_dashboard'>Dashboard</a></li>
+
+            {% else %}
+            
+      <li><a href="/signup"> SignUp </a></li>
+    
+    
+    
+     <li> <a href="/signin">SignIn </a></li>
+    
+    {% endif %}
+          </ul>
+      </div>
+          <div class="content">
+            <h1>SAVE YOUR MONEY</h1>
+            <p>"Welcome to Digital Committee, your ultimate platform for hassle-free committee management!<br>
+                 Choose your package, enter your details, and make monthly contributions.<br>
+                  Every participant receives a unique random ID, and the winner is announced on this random ID.<br>
+                   Check the results, anticipate your winning month, and collect your well-deserved rewards.<br>
+                    Join Digital Committee for a seamless journey in financial collaboration!"</p>
+          </div>
+    </div>
+  
+
+  </body>
+</html>
