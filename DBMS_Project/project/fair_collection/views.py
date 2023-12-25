@@ -3,11 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.contrib import messages
 from requests import request
 from django.shortcuts import render, redirect
 from .forms import EnrollmentForm
-from .models import Enrollment, Package,UserProfile
+from .models import Enrollment, Package,UserProfile,ResultHistory
 from django.contrib.auth.forms import UserCreationForm
 from project import settings
 from django.core.mail import send_mail
@@ -20,6 +21,7 @@ from datetime import datetime, timedelta
 from django.core.cache import cache
 from .forms import InterestForm
 import random
+from time import sleep
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
@@ -169,6 +171,7 @@ def user_dashboard(request):
 #     return render(request, 'fair_collection/generate_result.html', {'random_user': random_user})
 
 def generate_result(request):
+    sleep(3)
     try:
         # Get the package of the user generating the result
         user_profile = UserProfile.objects.get(user=request.user)
@@ -179,8 +182,15 @@ def generate_result(request):
 
         # Check if the form is submitted
         if request.method == 'POST':
-            # Render the template with a new random user and users with the same package
-            return render(request, 'fair_collection/generate_result.html', {'random_user': get_random_user(users_with_same_package), 'users_with_same_package': users_with_same_package})
+            # Move the previous random user to the result history
+            previous_random_user = ResultHistory.objects.create(user_profile=user_profile)
+            previous_random_user.save()
+
+            # Get a new random user
+            new_random_user = get_random_user(users_with_same_package)
+
+            # Render the template with the new random user and users with the same package
+            return render(request, 'fair_collection/generate_result.html', {'random_user': new_random_user, 'users_with_same_package': users_with_same_package})
 
         # Render the template without an initial result
         return render(request, 'fair_collection/generate_result.html', {'users_with_same_package': users_with_same_package})
@@ -188,18 +198,31 @@ def generate_result(request):
     except UserProfile.DoesNotExist:
         # Handle the case when UserProfile does not exist for the current user
         return render(request, 'fair_collection/generate_result.html', {'error_message': 'UserProfile does not exist for the current user.'})
+    
+    
+
 
 def get_random_user(queryset):
     return queryset.order_by('?').first()
+
 
 def signout(request):
    logout(request)
    messages.success(request, "Logged Out Successfully!")
    return redirect("home")
 
-def features(request):
-        
+def features(request):   
         return render(request, "fair_collection/features.html" )
+
+def front(request):
+        return render(request, "fair_collection/front.html" )
+
+def result_history(request):
+    history = ResultHistory.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, "fair_collection/result_history.html", {'history': history} )
+
+def paynow(request):  
+        return render(request, "fair_collection/pay.html" )
 
 def about(request):
     return render(request, "fair_collection/about.html" )

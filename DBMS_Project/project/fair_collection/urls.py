@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('signup', views.signup, name='signup'),
     path('signin', views.signin, name='signin'),
+    path('front', views.front, name='front'),
     path('signout', views.signout, name='signout'),
     path('features', views.features, name='features'),
     path('user_dashboard', views.user_dashboard, name='user_dashboard'),
@@ -14,5 +15,9 @@ urlpatterns = [
     path('packages/', views.package_list, name='package_list'),
     path('send_notification/', views.send_interest_notification, name='send_interest_notification'),
     path('enroll/<int:package_id>/', views.enroll_package, name='enroll_package'),
-   path('generate-result/', views.generate_result, name='generate_result'),
+    path('generate_result/', views.generate_result, name='generate_result'),
+    path('payment/', views.paynow, name='paynow'),
+    path('result-history/', views.result_history, name='result_history'),
+   
+    
 ]
