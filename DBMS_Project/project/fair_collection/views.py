@@ -183,8 +183,8 @@ def generate_result(request):
         # Check if the form is submitted
         if request.method == 'POST':
             # Move the previous random user to the result history
-            previous_random_user = ResultHistory.objects.create(user_profile=user_profile)
-            previous_random_user.save()
+            result_history = ResultHistory(user=user_profile.user, result='some_result')
+            result_history.save()
 
             # Get a new random user
             new_random_user = get_random_user(users_with_same_package)

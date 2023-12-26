@@ -29,7 +29,7 @@
             {% if history %}
             <ul>
                 {% for entry in history %}
-                    <li>{{ entry.result }} - {{ entry.created_at }}</li>
+                    <li>{{ entry }} - {{ entry.created_at }}</li>
                 {% endfor %}
             </ul>
         {% else %}
