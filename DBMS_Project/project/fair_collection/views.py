@@ -88,7 +88,7 @@ def signin(request):
         if user is not None:
             login(request, user)
             fname = user.username
-            return render(request, "fair_collection/user_dashboard.html", {'fname':fname} )
+            return render(request, "fair_collection/front.html", {'fname':fname} )
 
         else:
             messages.error(request, "Bad Credential")

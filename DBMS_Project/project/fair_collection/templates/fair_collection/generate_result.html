@@ -64,11 +64,18 @@
                     <div id="resultContainer"></div>
 
                  </form>
-                 <ul>
+                </br>
+                 <div class="card border-0">
+                  <div class="card-header">
+                    <h5 class="card-title">
+                    Committee Members:
+                    </h5>
+                  </div>
+                  <ul>
                   {% for user_profile in users_with_same_package %}
                     <li>{{ user_profile.user.username }} - {{ user_profile.user.email }} (Package: {{ user_profile.package }})</li>
                   {% endfor %}
-                </ul>
+                </ul> 
                
                  {% if error_message %}
                    <p>{{ error_message }}</p>

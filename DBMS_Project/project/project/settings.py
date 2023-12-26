@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fair_collection.apps.FairCollectionConfig'
+    'fair_collection.apps.FairCollectionConfig',
+    'stripe.apps.StripeConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_ROOT = 'fair_collection/static'
+
+STRIPE_SECRET_KEY = 'sk_test_51ORaD1GygBCH0kbVgro8WAEQWQ6d7Imty9TEWqlcvXdXQr76vxxNzwjq9ZWYXNJ8l9lwCGiF86E1x19KzgjnQKEX00uRLLSwKE'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51ORaD1GygBCH0kbVxe8kX7RbpSTLf2KQvzVyOw22dbJJfxWnQ20n2ATIhQLfSNej4LA5UwrTcOz2URYbHroPBwI100vhjrlMZU'
