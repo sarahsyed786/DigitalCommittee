@@ -1,18 +1,26 @@
 {% include "fair_collection/base2.html" %}
 <style>
-body{ 
- background-image:linear-gradient(rgb(255 255 255 / 40%),rgb(255 248 248 / 40%)),url(https://png.pngtree.com/png-clipart/20230104/original/pngtree-blue-neon-frame-png-image_8865604.png);  
- background-repeat:no-repeat; 
- background-attachment: fixed;
- background-position:center;
- background-size:70%;
- 
-} 
+  .inup {
+   
+    text-decoration: none;
+    color:  #126180;
+
+    {% comment %} text-transform: uppercase; {% endcomment %}
+}
+
+.inup:hover{
+  color:green;
+  
+}
+
 </style>
 {% block content %} 
           <div class="content">
-            <h2>SAVE YOUR MONEY</h2>
-            <p>"Welcome to Digital Committee, </br>Join Digital Committee for a seamless journey in financial collaboration!"</p>
+            <h2>Welcome to Digital Committee</h2>
+            <p>"Safe for Save" </br>Join Digital Committee for a seamless journey in financial collaboration!</p> 
+            
+            <a class="inup" href="/signup"> SignUp </a> &nbsp &nbsp
+            <a class="inup" href="/signin"> SignIn </a>
              {% comment %} your ultimate platform for hassle-free committee management!<br> {% endcomment %}
                  {% comment %} Choose your package, enter your details, and make monthly contributions.<br>
                   Every participant receives a unique random ID, and the winner is announced on this random ID.<br>
